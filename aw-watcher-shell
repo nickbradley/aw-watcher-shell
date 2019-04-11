@@ -17,7 +17,7 @@
 #   Modified by Nick Bradley
 
 
-echo "aw-watcher-shell v1.0.0"
+echo "aw-watcher-shell v1.0.1"
 
 # Ensure there is a HISTFILE.
 if [[ -z "${HISTFILE}" ]]; then
@@ -87,7 +87,7 @@ function aw_post_event() {
     local cmd="${cmd_raw//\"/\\\"}"
     local cwd=$(pwd)
     event_fmt='{"duration":%d,"data":{"cmdNo":%d,"session":"%s","cmdStr":"%s","code":%d, "cwd":"%s"}}'
-    printf "$event_fmt" ${duration} ${cmd_no} ${ASH_SESSION_ID} "${cmd}" ${code} "${cwd}"
+    # printf "$event_fmt" ${duration} ${cmd_no} ${ASH_SESSION_ID} "${cmd}" ${code} "${cwd}"
     res=$(curl \
         --silent \
         --fail \
@@ -103,7 +103,7 @@ function aw_post_event() {
 }
 
 
-dir=$(dirname "$(readlink -f "$0")")
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"
 if ps ho command $$ | grep -q "zsh"; then
   aw_ensure_bucket
   source "${dir}/zsh.sh"

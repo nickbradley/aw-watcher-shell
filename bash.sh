@@ -66,7 +66,6 @@ function __ash_begin_session() {
 
   export PROMPT_COMMAND="ASH=1 __ash_precmd \${?} \${PIPESTATUS[@]}"
   export ASH_SESSION_ID="$( __ash_generate_session_id )"
-  echo "aw-watcher-shell INFO: Begin new session ${ASH_SESSION_ID}"
   readonly ASH_SESSION_ID PROMPT_COMMAND
 }
 

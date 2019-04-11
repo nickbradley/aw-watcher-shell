@@ -5,7 +5,7 @@ Records the command, duration, working directory, and exit code.
 
 ## Install
 1. Download the latest release and unzip.
-2. Source aw-watcher-shell in `~/.bashrc` and/or `~/.zshrc`.
+2. Source aw-watcher-shell in `~/.bashrc` and/or `~/.zshrc` (on mac you can source it in `~/.bash_profile`).
 
 To confirm that aw-watcher-shell has been correctly sourced, open a new shell.
 You should see `aw-watcher shell v1.0.0` displayed before the first prompt is drawn.
