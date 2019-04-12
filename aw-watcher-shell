@@ -102,12 +102,12 @@ function aw_post_event() {
     fi
 }
 
-
-script_dir="`cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd`"
 if ps ho command $$ | grep -q "zsh"; then
+  script_dir="`cd "$( dirname "${(%):-%x}" )" > /dev/null 2>&1 && pwd`"
   aw_ensure_bucket
   source "${script_dir}/zsh.sh"
 elif ps ho command $$ | grep -q "bash"; then
+  script_dir="`cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd`"
   aw_ensure_bucket
   source "${script_dir}/bash.sh"
 else
