@@ -85,7 +85,7 @@ function aw_post_event() {
     local cmd_raw="${@:4}"
     # escape any double quotes
     local cmd="${cmd_raw//\"/\\\"}"
-    local cwd=$(pwd)
+    local cwd="${OLDPWD}"
     event_fmt='{"duration":%d,"data":{"cmdNo":%d,"session":"%s","cmdStr":"%s","code":%d, "cwd":"%s"}}'
     # printf "$event_fmt" ${duration} ${cmd_no} ${ASH_SESSION_ID} "${cmd}" ${code} "${cwd}"
     res=$(curl \
