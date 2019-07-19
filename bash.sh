@@ -57,6 +57,9 @@ readonly HISTTIMEFORMAT
 # Cause bash to log commands immediately, rather than upon shell exit.
 shopt -s histappend
 
+# Keep track of working directory before a command executes
+cmd_cwd="${PWD}"
+
 ##
 # This is invoked when a new user session begins.
 #
@@ -123,12 +126,15 @@ function __ash_log() {
     return
   fi
 
+
+
   local no start end cmd rval="${1}" && shift
   read -r no start end cmd <<< "$( __ash_last_command )"
   local pipes="$( sed -e 's: :_:g' <<< "${@}" )"
 
   local duration=$((${end}-${start}))
-  aw_post_event ${duration} ${no} ${rval} "${cmd}"
+  aw_post_event ${duration} ${no} ${rval} "${cmd_cwd}" "${cmd}"
+  cmd_cwd="${PWD}"
 }
 
 

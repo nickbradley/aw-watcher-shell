@@ -28,6 +28,9 @@ fi
 
 export ASH_SESSION_ID="$( __ash_generate_session_id )"
 
+# Keep track of working directory before a command executes
+cmd_cwd="${PWD}"
+
 #
 # Necessary zsh history settings that allow history collection to work:
 #
@@ -69,8 +72,8 @@ function precmd() {
     local rval=$?
     local cmd=($(ASH=1 __ash_last_command))
     local duration=$((${cmd[3]}-${cmd[2]}))
-    aw_post_event ${duration} ${cmd[1]} ${rval} "${cmd[@]:3}"
+    aw_post_event ${duration} ${cmd[1]} ${rval} "${cmd_cwd}" "${cmd[@]:3}"
     ASH=1 __ash_original_precmd
-
+    cmd_cwd="${PWD}"
     return rval
 }
