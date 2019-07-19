@@ -17,7 +17,7 @@
 #   Modified by Nick Bradley
 
 
-echo "aw-watcher-shell v1.0.3"
+echo "aw-watcher-shell v1.0.4"
 
 # Ensure there is a HISTFILE.
 if [[ -z "${HISTFILE}" ]]; then
