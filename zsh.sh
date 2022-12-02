@@ -46,7 +46,7 @@ function __ash_last_command() {
   [[ "${ASH:-0}" == "0" ]] && __ash_info __ash_last_command && return
 
   local cmd cmd_no start_ts end_ts=$( date +%s )
-  read start_ts <<< "$( grep "^:" "${HISTFILE}" | tail -n1 | cut -d: -f2 )"
+  read start_ts <<< "$( grep -a "^:" "${HISTFILE}" | tail -n1 | cut -d: -f2 )"
   read -r cmd_no cmd <<< "$( builtin history -1 )"
   echo -E ${cmd_no:-0} ${start_ts:-0} ${end_ts:-0} "${cmd:-UNKNOWN}"
 }
